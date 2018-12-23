@@ -7,14 +7,14 @@ void RX5808_Init(void)
     RX5808_PORTX |= (1<<RX5808_SS);
 
     CLR(RX5808_PORTX, RX5808_SS);
-    SPI_WriteByte(0x10); // отослать байт в RX5808
-    SPI_WriteByte(0x01); // отослать байт в RX5808
-    SPI_WriteByte(0x00); // отослать байт в RX5808
-    SPI_WriteByte(0x00); // отослать байт в RX5808
+    SPI_WriteByte(0x10);
+    SPI_WriteByte(0x01);
+    SPI_WriteByte(0x00);
+    SPI_WriteByte(0x00);
     SET(RX5808_PORTX, RX5808_SS);
 }
 
- void prog_freg (unsigned int Freguency)               // устанавливаем частоту в RX5808 из регистра freguencu
+ void prog_freg (unsigned int Freguency)
 { 
 	  unsigned int Delitel;
 	  unsigned int DelitelH;
@@ -32,9 +32,9 @@ void RX5808_Init(void)
       SET(RX5808_PORTX, RX5808_SS);
 }
   
-  unsigned int rssi_db(unsigned int rssi, unsigned int deltaRSSI) // перевод данных с RSSI в dB
+  unsigned int rssi_db(unsigned int rssi, unsigned int deltaRSSI)
 {
-  //Расчеты для диапазона уровня -91..+5дБ , в сумме 96дБ
+
   unsigned char db=0;
   unsigned int a = (deltaRSSI*100)/96;
   db = (rssi*100)/a; 
@@ -42,7 +42,7 @@ void RX5808_Init(void)
   return db;
 }
 
-unsigned char CH_32_to_band(unsigned char CH_32)  // возвращает сетку частот этого канала
+unsigned char CH_32_to_band(unsigned char CH_32)
 {
    unsigned char CH;
   // Определяем сетку частот 
@@ -53,7 +53,7 @@ unsigned char CH_32_to_band(unsigned char CH_32)  // возвращает сет
     return CH;
 }
 
-unsigned char CH_32_to_CH_8(unsigned char CH_32) // переводим из 32 разрядной сетки в 8 ми
+unsigned char CH_32_to_CH_8(unsigned char CH_32)
 {
   unsigned char CH1 = 0;
   // определяем канал
@@ -78,7 +78,7 @@ unsigned int CH_32_to_frequency(unsigned char CH_32)
   return frequency;
 }
 
-unsigned char frequency_to_CH_32(unsigned int frequency1) // поиск канала по частота, если нету то возвращает ноль
+unsigned char frequency_to_CH_32(unsigned int frequency1)
 {
   unsigned char t=0;
   for(unsigned char i=0; i<32; i++)
