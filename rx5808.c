@@ -1,5 +1,3 @@
-
-
 #include "rx5808.h"
 #include "spi.h"
 void RX5808_Init(void)
